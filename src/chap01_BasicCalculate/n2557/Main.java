@@ -1,6 +1,6 @@
-package chap01_BasicCalculate;
+package chap01_BasicCalculate.n2557;
 
-public class n2557 {
+public class Main {
 	
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
