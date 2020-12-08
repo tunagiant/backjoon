@@ -31,7 +31,6 @@ public class Main {
 
 			}
 			if (isOnly && i != 1) {
-				isOnly = false;
 				list.add(i);
 			}
 		}
