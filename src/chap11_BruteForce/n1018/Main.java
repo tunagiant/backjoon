@@ -15,7 +15,7 @@ public class Main {
 		int N = scanner.nextInt();
 		int M = scanner.nextInt();
 
-		scanner.nextLine();
+		scanner.nextLine();		// \n Á¦°Å
 
 		String str;
 		base = new char[N][M];
@@ -40,10 +40,9 @@ public class Main {
 
 	private static int find(int x, int y) {
 
-		int count = 0;
 
 		for (int i = 0; i < 2; i++) {
-			count = 0;
+			int count = 0;
 			for (int j = 0; j < 8; j++) { // N
 				for (int k = 0; k < 8; k++) { // M
 					if (base[x + j][y + k] != check[(i + j) % 2][k]) {
