@@ -86,7 +86,6 @@ public class Main {
 		}
 		return true;
 
-		// squ check
 
 	}
 }
