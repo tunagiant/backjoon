@@ -7,7 +7,7 @@ public class Main {
 	static int[][] arr;
 	static boolean[] check;
 	static int N;
-	static int MIN = 100;
+	static int MIN = Integer.MAX_VALUE;
 
 	public static void main(String[] args) {
 
