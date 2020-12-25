@@ -15,13 +15,12 @@ public class Main {
 		String[] num = new String[(int) Math.pow(2, N)];
 		
 		List<String> list = new ArrayList<String>();
-		list.add("00");
 		
-		for (int i = 2; i < num.length; i++) {
-			num[i] = String.valueOf(Integer.toBinaryString(i));
+		for (int i = 0; i < num.length; i++) {
+			num[i] = String.format("%0" + N + "d", Integer.parseInt((Integer.toBinaryString(i))));
 		}
 		
-		for (int i = 2; i < num.length; i++) {
+		for (int i = 0; i < num.length; i++) {
 			while (num[i].contains("00")) {
 				num[i] = num[i].replace("00", "xx");
 			}
@@ -30,12 +29,10 @@ public class Main {
 			}
 			list.add(num[i]);
 		}
-		
-		Iterator iterator = list.listIterator();
-		while (iterator.hasNext()) {
-			String str = (String) iterator.next();
-			str.replaceAll("xx", "00");
-			list.get(Integer.parseInt(str));
+
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).replace("xx", "00");
+			
 		}
 		
 		System.out.println(list.size() % 15746);

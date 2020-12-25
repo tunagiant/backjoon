@@ -26,6 +26,7 @@ public class Main {
 		
 		for (int i = 0; i < T; i++) {
 			fibonacci(num[i]);
+			System.out.println(dp[num[i]][0] + " " + dp[num[i]][1]);
 		}
 		
 		
