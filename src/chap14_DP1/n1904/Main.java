@@ -32,8 +32,9 @@ public class Main {
 
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).replace("xx", "00");
-			
+			System.out.println(list.get(i));
 		}
+		
 		
 		System.out.println(list.size() % 15746);
 	}
