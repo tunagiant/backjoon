@@ -17,18 +17,17 @@ import java.util.StringTokenizer;
 4 5 2 6 5
  */
 
-
 public class Main {
-	
+
 	static int N = 0;
 	static ArrayList<Integer>[] arr;
-	static int MAX = 0;
-	
+	static int RESULT = 0;
+
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st;
-		
+
 		N = Integer.parseInt(br.readLine());
 		arr = new ArrayList[N];
 		for (int i = 0; i < N; i++) {
@@ -38,23 +37,25 @@ public class Main {
 				arr[i].add(Integer.parseInt(st.nextToken()));
 			}
 		}
-		
-		sol(0, 1);
-		
+
+		sol(1, arr[0].get(0), 0);
+
+		System.out.println(RESULT);
+
 	}
 
-	private static void sol(int sum, int index) {
-		
-		if (index == 5) {
-			MAX = Math.max(MAX, sum);
+	private static void sol(int index, int sum, int depth) {
+
+		if (depth == 4) {
+			RESULT = Math.max(RESULT, sum);
 			return;
 		}
-		
-		for (int i = 0; i < arr[index].size(); i++) {
-			sol(sum + arr[index + 1].get(i), index++);
+
+		for (int i = 0; i < 2; i++) {
+			sol(index + i, sum + arr[index].get(index + i), depth + 1);
+
 		}
-		
-		
+
 	}
 
 }
