@@ -1,26 +1,25 @@
-package chap14_DP1.n1932;
+package chap14_DP1.n2579;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.StringTokenizer;
-/*TestCase
-5
-7
-3 8
-8 1 0
-2 7 4 4
-4 5 2 6 5
+
+/* testcase
+6
+10
+20
+15
+25
+10
+20
  */
 
 public class Main {
-
 	static int N = 0;
-	static ArrayList<Integer>[] arr;
+	static int[] arr;
 	static int RESULT = 0;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -29,17 +28,14 @@ public class Main {
 		StringTokenizer st;
 
 		N = Integer.parseInt(br.readLine());
-		arr = new ArrayList[N];
-		for (int i = 0; i < N; i++) {
-			arr[i] = new ArrayList<Integer>();
+		arr = new int[N];
+
+		for (int i = 0; i < arr.length; i++) {
 			st = new StringTokenizer(br.readLine());
-			while (st.hasMoreTokens()) {
-				arr[i].add(Integer.parseInt(st.nextToken()));
-			}
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
 
-		sol(0, arr[0].get(0), 0);
-
+		sol(0, 0, 10);
 		bw.write(String.valueOf(RESULT));
 		bw.flush();
 		bw.close();
@@ -47,17 +43,32 @@ public class Main {
 
 	}
 
-	private static void sol(int index, int sum, int depth) {
+	private static void sol(int idx, int count, int sum) {
 
-		if (depth == 4) {
-			RESULT = Math.max(RESULT, sum);
-			return;
+		// i : 뛰어넘는 계단 수(1칸, 2칸)
+		for (int i = 1; i <= 2; i++) {
+			// count : 연속된 계단 오른 수
+			if (count == 2) {
+				return;
+			} else {
+				if (idx + i < N) {
+					sum += arr[idx + i];
+					switch (i) {
+					case 1:
+						sol(idx + i, count + 1, sum);
+						break;
+					case 2:
+						sol(idx + i, 0, sum);
+						break;
+					}
+					sum -= arr[idx + i];
+
+				}
+
+			}
 		}
-
-		for (int i = 0; i < 2; i++) {
-			sol(index + i, sum + arr[depth + 1].get(index + i), depth + 1);
-			
-
+		if (idx == N - 1) {
+			RESULT = Math.max(sum, RESULT);
 		}
 
 	}
