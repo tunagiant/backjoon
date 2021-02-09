@@ -1,4 +1,4 @@
-package chap14_DP1.n10844;
+package chap14_DP1.n11053;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,10 +6,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
+/*testcase
+6
+10 20 10 30 20 50
+ */
 
 public class Main {
-	static int N;
-	static int count = 0;
+	static int N = 0;
+	static int[] arr;
 	static int MAX = 0;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -18,35 +22,37 @@ public class Main {
 		StringTokenizer st;
 
 		N = Integer.parseInt(br.readLine());
-		MAX = (int) Math.pow(10, N);
+		arr = new int[N];
+		st = new StringTokenizer(br.readLine());
 
-		for (int i = (int) Math.pow(10, N - 1); i < MAX; i++) {
-			sol(String.valueOf(i), 0);
+		for (int i = 0; i < N; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
+		sol(0, 1);
 		
-		bw.write(String.valueOf(count));
+		bw.write(String.valueOf(MAX));
 		bw.flush();
-		br.close();
 		bw.close();
+		br.close();
+		
 
 	}
 
-	private static void sol(String num, int index) {
-
-		if (index == N - 1) {
-			count++;
-			return;
-		}
+	private static void sol(int index, int count) {
 
 		for (int i = index; i < N - 1; i++) {
-			if (num.charAt(i) - '1' == num.charAt(i + 1) - '0'
-					|| num.charAt(i) - '0' + 1 == num.charAt(i + 1) - '0') {
-				sol(num, index + 1);
-			} else {
-				return;
+			for (int j = 1; j < N - i; j++) {
+				if (arr[i + j] <= arr[i]) {
+					continue;
+				} else {
+					sol(i + j, count + 1);
+				}
 			}
+		}
+		if (count > MAX) {
+			MAX = count;
 		}
 
 	}
-	
+
 }
