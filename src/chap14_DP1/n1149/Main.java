@@ -31,8 +31,7 @@ public class Main {
 		DP[0][Green] = Cost[0][Green];
 		DP[0][Blue] = Cost[0][Blue];
 		
-		
-		System.out.print(Math.min(Paint_cost(N- 1, Red), Math.min(Paint_cost(N - 1, Green), Paint_cost(N - 1, Blue))));
+		System.out.print(Math.min(Paint_cost(N - 1, Red), Math.min(Paint_cost(N - 1, Green), Paint_cost(N - 1, Blue))));
 		System.out.println();
 	}
 	

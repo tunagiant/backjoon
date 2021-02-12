@@ -22,6 +22,7 @@ public class Main {
 	static int N = 0;
 	static ArrayList<Integer>[] arr;
 	static int RESULT = 0;
+	static boolean[] check;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -47,11 +48,11 @@ public class Main {
 
 	}
 
-	private static void sol(int index, int sum, int depth) {
+	private static int sol(int index, int sum, int depth) {
 
 		if (depth == 4) {
 			RESULT = Math.max(RESULT, sum);
-			return;
+			return RESULT;
 		}
 
 		for (int i = 0; i < 2; i++) {
