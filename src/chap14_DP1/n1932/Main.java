@@ -48,11 +48,11 @@ public class Main {
 
 	}
 
-	private static int sol(int index, int sum, int depth) {
+	private static void sol(int index, int sum, int depth) {
 
 		if (depth == 4) {
 			RESULT = Math.max(RESULT, sum);
-			return RESULT;
+			return;
 		}
 
 		for (int i = 0; i < 2; i++) {
