@@ -22,6 +22,7 @@ public class Main {
 	static int N = 0;
 	static ArrayList<Integer>[] arr;
 	static int RESULT = 0;
+	static boolean[] check;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
