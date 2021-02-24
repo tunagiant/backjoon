@@ -18,9 +18,9 @@ import java.util.StringTokenizer;
 20
  */
 
-public class Main {
-	static int N = 0;
+public class Main2 {
 	static int[] arr;
+	static Integer[] dp;
 	static int RESULT = 0;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -28,49 +28,36 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st;
 
-		N = Integer.parseInt(br.readLine());
-		arr = new int[N];
+		int N = Integer.parseInt(br.readLine());
+		arr = new int[N + 1];
+		dp = new Integer[N + 1];
 
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 1; i < arr.length; i++) {
 			st = new StringTokenizer(br.readLine());
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 
-		sol(0, 0, 10);
-		bw.write(String.valueOf(RESULT));
+		dp[0] = arr[0];	// 0 으로 초기화
+		dp[1] = arr[1];
+		
+		if (N >= 2) {
+			dp[2] = arr[1] + arr[2];
+		}
+
+		bw.write(String.valueOf(sol(N)));
 		bw.flush();
 		bw.close();
 		br.close();
 
 	}
 
-	private static void sol(int idx, int count, int sum) {
+	private static int sol(int N) {
 
-		// i : 뛰어넘는 계단 수(1칸, 2칸)
-		for (int i = 1; i <= 2; i++) {
-			// count : 연속된 계단 오른 수
-			if (count == 2) {
-				return;
-			} else {
-				if (idx + i < N) {
-					sum += arr[idx + i];
-					switch (i) {
-					case 1:
-						sol(idx + i, count + 1, sum);
-						break;
-					case 2:
-						sol(idx + i, 0, sum);
-						break;
-					}
-					sum -= arr[idx + i];
-
-				}
-
-			}
+		if (dp[N] == null) {
+			dp[N] = Math.max(sol(N - 2), sol(N - 3) + arr[N - 1]) + arr[N];
 		}
-		if (idx == N - 1) {
-			RESULT = Math.max(sum, RESULT);
-		}
+		
+		return dp[N];
 
 	}
 
